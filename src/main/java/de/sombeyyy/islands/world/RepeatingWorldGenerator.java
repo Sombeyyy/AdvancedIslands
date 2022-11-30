@@ -1,8 +1,6 @@
 package de.sombeyyy.islands.world;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
@@ -23,8 +21,13 @@ public class RepeatingWorldGenerator extends ChunkGenerator {
         }
     }
 
-    private void tests() {
-        ChunkData data = Bukkit.getServer().createChunkData(null);
+    private ChunkData generateDefaultChunk(ChunkData chunkData) {
+        chunkData.setRegion(0, -64, 0, 15, -61, 15, Material.BEDROCK);
+        chunkData.setRegion(0, -60, 0, 15, -48, 15, Material.STONE);
+        chunkData.setRegion(0, -47, 0, 15, -33, 15, Material.SAND);
+        //y=-32 to y=-25 can contain sand after landscaping
+        chunkData.setRegion(0, -32, 0, 15, 0, 15, Material.WATER);
+        return chunkData;
     }
 
 }
